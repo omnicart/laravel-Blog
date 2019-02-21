@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Model\user\post;
+use DB;
 class postcontroller extends Controller
 {
     /**
@@ -35,7 +35,20 @@ class postcontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'title' => 'required',
+            'subtitle' => 'required',
+            'slug' =>'required',
+            'body'=>'required'
+        ]);
+        // $post = new post;
+        // $post->title = $request->title;
+        // $post->subtitle = $request->subtitle;
+        // $post->slug = $request->slug;
+        // $post->body = $request->body;
+        // $post->save();
+        DB::TABLE('posts')->insert($request->except('_token','_wysihtml5_mode'));
+        return back();
     }
 
     /**

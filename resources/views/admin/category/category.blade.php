@@ -26,7 +26,9 @@
 	            </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form">
+             @include('include.message')
+            <form role="form" action="{{ route('category.store') }}" method="post">
+              @csrf
               <div class="box-body">
                 <!-- title start here -->
               <div class="col-lg-6 col-lg-offset-4">

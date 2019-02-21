@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-
+use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Model\user\tag;
 class tagcontroller extends Controller
 {
     /**
@@ -35,7 +35,22 @@ class tagcontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+    // print_r($request->all());
+       $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'slug' => 'required',
+        ]);
+
+       if ($validator->fails()) {
+            return redirect('admin/tag/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        tag::create($request->except('_token'));
+
+        return back();
+
     }
 
     /**

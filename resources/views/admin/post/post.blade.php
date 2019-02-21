@@ -26,9 +26,11 @@
             <div class="box-header with-border">
               <h3 class="box-title">Titles</h3>
             </div>
+          @include('include.message')
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form">
+            <form role="form" action="{{ route('post.store') }}" method="post">
+              @csrf
               <div class="box-body">
                 <!-- title start here -->
               <div class="col-lg-6">
@@ -79,10 +81,10 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body pad">
-              <form>
+             
                 <textarea class="textarea" name="body" placeholder="Place some text here"
                           style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-              </form>
+             
             </div>
           </div>
               <div class="box-footer">
