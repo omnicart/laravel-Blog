@@ -14,7 +14,9 @@ class tagcontroller extends Controller
      */
     public function index()
     {
-          return view('admin.tag.show');
+            $tags = tag::get();
+          return view('admin.tag.show',compact('tags'));
+
     }
 
     /**
