@@ -14,7 +14,8 @@ class postcontroller extends Controller
      */
     public function index()
     {
-         return view('admin.post.show');
+       $posts = post::get();
+         return view('admin.post.show',compact('posts'));
     }
 
     /**
@@ -41,14 +42,14 @@ class postcontroller extends Controller
             'slug' =>'required',
             'body'=>'required'
         ]);
-        // $post = new post;
-        // $post->title = $request->title;
-        // $post->subtitle = $request->subtitle;
-        // $post->slug = $request->slug;
-        // $post->body = $request->body;
-        // $post->save();
-        DB::TABLE('posts')->insert($request->except('_token','_wysihtml5_mode'));
-        return back();
+        $post = new post;
+        $post->title = $request->title;
+        $post->subtitle = $request->subtitle;
+        $post->slug = $request->slug;
+        $post->body = $request->body;
+        $post->save();
+        // DB::TABLE('posts')->insert($request->except('_token','_wysihtml5_mode'));
+        return redirect()->route('post.index');
     }
 
     /**
@@ -70,7 +71,7 @@ class postcontroller extends Controller
      */
     public function edit($id)
     {
-        //
+        return $id;
     }
 
     /**
@@ -93,6 +94,8 @@ class postcontroller extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = post::find($id);
+        $post->delete();
+        return redirect()->route('post.index');
     }
 }

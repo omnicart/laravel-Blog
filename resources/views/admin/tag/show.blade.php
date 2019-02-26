@@ -1,9 +1,11 @@
 @extends('admin.layouts.app')
 
-@section('main-content')
 @section('head-section')
 <link rel="stylesheet" type="text/css" href="{{ asset('admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
 @endsection
+
+@section('main-content')
+
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -25,8 +27,8 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Title</h3>
-
+          <h3 class="box-title">Tags</h3>
+         <a href="{{ route('tag.create') }}" class="col-lg-offset-5 btn btn-success">Add New</a>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                     title="Collapse">
@@ -64,12 +66,12 @@
                 @endforeach
                 </tbody>
                 <tfoot>
-                <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
+                 <tr>
+                  <th>Sr. No</th>
+                  <th>Tag Name</th>
+                  <th>Slug</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
                 </tr>
                 </tfoot>
               </table>

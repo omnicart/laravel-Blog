@@ -14,7 +14,9 @@ class categorycontroller extends Controller
      */
     public function index()
     {
-        return view('admin.category.show');
+       $categories =  category::get();
+       // dd($categories);
+        return view('admin.category.show',compact('categories'));
     }
 
     /**
@@ -44,7 +46,7 @@ class categorycontroller extends Controller
         $category->name = $request->name;
         $category->slug = $request->slug;
         $category->save();
-        return back();
+        return redirect('admin/category');
     }
 
     /**

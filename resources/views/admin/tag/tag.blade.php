@@ -48,6 +48,7 @@
                 </div>
                  <div class="form-group text-center">
                	  <button type="submit" class="btn btn-primary">Submit</button>
+                  <a type="button" href="{{route('tag.index')}}" class="btn btn-warning">Back</a>
              	 </div>
               </div>
       	     </div>

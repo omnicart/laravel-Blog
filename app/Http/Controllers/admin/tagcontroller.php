@@ -51,7 +51,7 @@ class tagcontroller extends Controller
 
         tag::create($request->except('_token'));
 
-        return back();
+        return redirect()->route('tag.index');
 
     }
 

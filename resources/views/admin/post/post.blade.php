@@ -24,7 +24,7 @@
         <div class="col-md-12">
          <!-- /.box --><div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Titles</h3>
+              <h3 class="box-title">Post</h3>
             </div>
           @include('include.message')
             <!-- /.box-header -->
@@ -89,6 +89,7 @@
           </div>
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
+                <a type="button" href="{{route('post.index')}}" class="btn btn-warning">Back</a>
               </div>
             </form>
           </div>
