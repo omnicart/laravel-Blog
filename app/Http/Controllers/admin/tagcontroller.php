@@ -72,9 +72,10 @@ class tagcontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(tag $tag)
     {
-        //
+        // return $tag;
+        return view('admin.tag.edit',compact('tag'));
     }
 
     /**
@@ -84,9 +85,22 @@ class tagcontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,tag $tag)
     {
-        //
+        // return $id;
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'slug' => 'required',
+        ]);
+
+       if ($validator->fails()) {
+            return redirect()->route('tag.edit',$id)
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        $tag->update($request->only('name','slug'));
+        return redirect()->route('tag.index');
     }
 
     /**
@@ -95,8 +109,10 @@ class tagcontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(tag $tag)
     {
-        //
+        // return $tag;
+            $tag->delete();
+            return redirect()->back();
     }
 }
