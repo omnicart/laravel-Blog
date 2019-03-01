@@ -37,5 +37,8 @@
 
   @section('head-section')
 
+  @show
+
+  @section('head-content')
 
   @show

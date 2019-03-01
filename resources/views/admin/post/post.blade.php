@@ -1,5 +1,9 @@
 @extends('admin.layouts.app')
 
+@section('head-content')
+<link rel="stylesheet" type="text/css" href="{{ asset('admin/bower_components/select2/dist/css/select2.min.css') }}">
+@endsection
+
 @section('main-content')
 
 
@@ -50,21 +54,44 @@
                 </div>
               </div>
                 <!-- //file (img) -->
-                <div class="col-lg-6">
+               <div class="col-lg-6">
+                  <br>
                   <div class="form-group">
-                  <label for="image">File input</label>
-                  <input type="file" name = "image" id="image">
-                </div>
+                    <div class="pull-right">
+                      <label for="image">File input</label>
+                       <input type="file" name = "image" id="image">
+                    </div>
+                    <div class="checkbox pull-left" >
+                      <label>
+                        <input type="checkbox" name="status">Publish
+                      </label>
+                    </div>
+                  </div>
                 <!-- pulich or not -->
                 <br>
-                <br>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" name="status">Publish
-                  </label>
-                </div>
+           
+              <div class="form-group" style="margin-top: 18px">
+                <label>Select Tags</label>
+                <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                  @foreach($tag as $tags)
+                  <option value="{{$tags->id}}">{{$tags->name}}</option>
+                  @endforeach
+                </select>
+              </div>
+
+
+                <div class="form-group" style="margin-top: 18px">
+                <label>Select Category</label>
+                <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                  @foreach($categories  as $category)
+                  <option  value="{{$category->id}}">{{$category->name}}</option>
+                  @endforeach
+                </select>
+              </div>
+
                 </div>
               </div>
+
               <!-- /.box-body -->
                 <div class="box">
             <div class="box-header">
@@ -101,4 +128,16 @@
     <!-- /.content -->
   </div>
 
+  @endsection
+
+   @section('footer-content')
+<script type="text/javascript" src="{{ asset('admin/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
+
+<script type="text/javascript">
+  
+   $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+  })
+</script>
   @endsection

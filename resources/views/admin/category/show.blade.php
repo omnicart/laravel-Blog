@@ -59,8 +59,15 @@
                   <td>{{$loop->index+1}}</td>
                   <td>{{$category->name}}</td>
                   <td>{{$category->slug}}</td>
-                  <td>Edit</td>
-                  <td>Delete</td>
+                  <td><a href="{{ route('category.edit',$category->id) }}"><span class="fa fa-edit"></span></a></td>
+                  <td>
+                   <form class="form-group pull-right" action="{{ route('category.destroy',$category->id) }}" method="post" id="Delete-form-{{$category->id}}">
+                      {{csrf_field()}}  
+                   
+                    @method('DELETE')
+                  </form>
+                   <a href=""  onclick="if(confirm('Are You want to Delete?')){event.preventDefault();document.getElementById('Delete-form-{{$category->id}}').submit();}else{event.preventDefault();}"><span class="fa fa-trash-o"></span></a>
+                  </td>
                 </tr>
                 @endforeach
                 </tbody>

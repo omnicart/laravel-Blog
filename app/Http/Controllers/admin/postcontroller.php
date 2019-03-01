@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\user\post;
 use DB;
+use App\Model\user\tag;
+use App\Model\user\category;
 class postcontroller extends Controller
 {
     /**
@@ -25,7 +27,10 @@ class postcontroller extends Controller
      */
     public function create()
     {
-        return view('admin.post.post');
+        $tag = tag::get();
+        $categories  = category::get();
+        // dd($categories);
+        return view('admin.post.post',compact('tag','categories'));
     }
 
     /**
@@ -72,7 +77,10 @@ class postcontroller extends Controller
     public function edit($id)
     {
             $edit = post::find($id);
-        return view('admin.post.edit',compact('edit'));
+            $tag = tag::get();
+            $categories  = category::get();
+        // dd($categories);
+        return view('admin.post.post',compact('tag','categories','edit'));
        
     }
 

@@ -47,3 +47,6 @@
 
  @section('footer-section')
   @show
+
+ @section('footer-content')
+ 	@show
