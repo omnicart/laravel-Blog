@@ -61,37 +61,29 @@
                     </div>
                     <div class="checkbox pull-left" >
                       <label>
-                        <input type="checkbox" name="status" @if($edit->status ==1)checked @endif>Publish
+                        <input type="checkbox" name="status" @if($edit->status ==1) checked @endif>Publish
                       </label>
                     </div>
                   </div>
                 <!-- pulich or not -->
                 <br>
            
-              <div class="form-group" style="margin-top: 18px">
+               <div class="form-group" style="margin-top: 18px">
                 <label>Select Tags</label>
-                <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                  <option>Alabama</option>
-                  <option>Alaska</option>
-                  <option>California</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
+                <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="tags[]">
+                  @foreach($tag as $tags)
+                  <option value="{{$tags->id}}">{{$tags->name}}</option>
+                  @endforeach
                 </select>
               </div>
 
 
                 <div class="form-group" style="margin-top: 18px">
                 <label>Select Category</label>
-                <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                  <option>Alabama</option>
-                  <option>Alaska</option>
-                  <option>California</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
+                <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="category[]">
+                  @foreach($categories  as $category)
+                  <option  value="{{$category->id}}">{{$category->name}}</option>
+                  @endforeach
                 </select>
               </div>
 

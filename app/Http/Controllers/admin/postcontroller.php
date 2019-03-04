@@ -41,19 +41,26 @@ class postcontroller extends Controller
      */
     public function store(Request $request)
     {
+        // return $request->all();
         $this->validate($request,[
             'title' => 'required',
             'subtitle' => 'required',
             'slug' =>'required',
-            'body'=>'required'
+            'body'=>'required',
+            'tags'=>'required',
+            'category' =>'required',
+            
         ]);
         $post = new post;
         $post->title = $request->title;
         $post->subtitle = $request->subtitle;
         $post->slug = $request->slug;
         $post->body = $request->body;
+        $post->status = $request->status;
         $post->save();
-        // DB::TABLE('posts')->insert($request->except('_token','_wysihtml5_mode'));
+        $post->tag()->sync($request->tags);
+        $post->category()->sync($request->category);
+        // // DB::TABLE('posts')->insert($request->except('_token','_wysihtml5_mode'));
         return redirect()->route('post.index');
     }
 
@@ -80,7 +87,7 @@ class postcontroller extends Controller
             $tag = tag::get();
             $categories  = category::get();
         // dd($categories);
-        return view('admin.post.post',compact('tag','categories','edit'));
+        return view('admin.post.edit',compact('tag','categories','edit'));
        
     }
 
@@ -98,7 +105,9 @@ class postcontroller extends Controller
             'title' => 'required',
             'subtitle' => 'required',
             'slug' =>'required',
-            'body'=>'required'
+            'body'=>'required',
+            'tags'=>'required',
+            'category' =>'required',
         ]);
 
        $post = post::find($id);
@@ -106,6 +115,8 @@ class postcontroller extends Controller
         $post->subtitle = $request->subtitle;
         $post->slug = $request->slug;
         $post->body = $request->body;
+        $post->tag()->sync($request->tags);
+        $post->category()->sync($request->category);
         $post->save();
         return redirect()->route('post.index');
     }

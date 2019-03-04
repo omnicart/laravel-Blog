@@ -5,6 +5,7 @@ namespace App\Model\user;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Model\user\post;
+use App\Model\user\category;
 class category extends Model
 {
      protected $fillable = ['name','slug'];
@@ -13,6 +14,6 @@ class category extends Model
 
          public function post()
     {
-    	return $this->belongsToMany(post::class,'category_posts');
+    	return $this->belongsToMany(post::class,'category_posts')->pivot('category');
     }
 }

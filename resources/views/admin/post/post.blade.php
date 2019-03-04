@@ -63,7 +63,7 @@
                     </div>
                     <div class="checkbox pull-left" >
                       <label>
-                        <input type="checkbox" name="status">Publish
+                        <input type="checkbox" name="status" value="1">Publish
                       </label>
                     </div>
                   </div>
@@ -72,7 +72,7 @@
            
               <div class="form-group" style="margin-top: 18px">
                 <label>Select Tags</label>
-                <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="tags[]">
                   @foreach($tag as $tags)
                   <option value="{{$tags->id}}">{{$tags->name}}</option>
                   @endforeach
@@ -82,7 +82,7 @@
 
                 <div class="form-group" style="margin-top: 18px">
                 <label>Select Category</label>
-                <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="category[]">
                   @foreach($categories  as $category)
                   <option  value="{{$category->id}}">{{$category->name}}</option>
                   @endforeach
