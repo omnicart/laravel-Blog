@@ -30,4 +30,5 @@ Route::group(['prefix'=>'admin'],function(){
  
 });
 
+Route::get('/book','bookcontroller@index');
  

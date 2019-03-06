@@ -72,7 +72,11 @@
                 <label>Select Tags</label>
                 <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="tags[]">
                   @foreach($tag as $tags)
-                  <option value="{{$tags->id}}">{{$tags->name}}</option>
+                  <option value="{{$tags->id}}"@foreach ($edit->tag as $PostTag)
+                    @if ($PostTag->id == $tags->id)
+                      selected 
+                    @endif
+                  @endforeach>{{$tags->name}}</option>
                   @endforeach
                 </select>
               </div>
@@ -82,7 +86,11 @@
                 <label>Select Category</label>
                 <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="category[]">
                   @foreach($categories  as $category)
-                  <option  value="{{$category->id}}">{{$category->name}}</option>
+                  <option  value="{{$category->id}}" @foreach ($edit->category as $CategoryTag)
+                    @if ($CategoryTag->id == $category->id)
+                      selected 
+                    @endif
+                  @endforeach>{{$category->name}}</option>
                   @endforeach
                 </select>
               </div>

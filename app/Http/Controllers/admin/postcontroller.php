@@ -29,7 +29,6 @@ class postcontroller extends Controller
     {
         $tag = tag::get();
         $categories  = category::get();
-        // dd($categories);
         return view('admin.post.post',compact('tag','categories'));
     }
 
@@ -52,12 +51,14 @@ class postcontroller extends Controller
             
         ]);
         $post = new post;
+        // dd($post);
         $post->title = $request->title;
         $post->subtitle = $request->subtitle;
         $post->slug = $request->slug;
         $post->body = $request->body;
         $post->status = $request->status;
         $post->save();
+        // dd($post->tag());
         $post->tag()->sync($request->tags);
         $post->category()->sync($request->category);
         // // DB::TABLE('posts')->insert($request->except('_token','_wysihtml5_mode'));
@@ -83,12 +84,17 @@ class postcontroller extends Controller
      */
     public function edit($id)
     {
-            $edit = post::find($id);
+        //     $edit = post::find($id);
+        // // dd($edit);
             $tag = tag::get();
+
             $categories  = category::get();
+        $edit = post::with('tag','category')->where('id',$id)->first();
+       // return $data;
+        // $data = post::find($id)->with('tag','category')->get();
+        // dd($data);
         // dd($categories);
-        return view('admin.post.edit',compact('tag','categories','edit'));
-       
+        return view('admin.post.edit',compact('edit','tag','categories'));
     }
 
     /**
@@ -100,7 +106,7 @@ class postcontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        // return $id;
+       // return $request->all();
          $this->validate($request,[
             'title' => 'required',
             'subtitle' => 'required',

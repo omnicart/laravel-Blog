@@ -9,11 +9,12 @@ class post extends Model
 {
     public function tag()
     {
-    	return $this->belongsToMany(tag::class);
+    	return $this->belongsToMany(tag::class)->withTimestamps();
     }
 
     public function category()
     {
-    	return $this->belongsToMany(category::class,'category_posts');
+    	return $this->belongsToMany(category::class,'category_posts')->withTimestamps();
     }
+    
 }
