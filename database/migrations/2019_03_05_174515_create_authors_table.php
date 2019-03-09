@@ -17,6 +17,7 @@ class CreateAuthorsTable extends Migration
             $table->increments('id');
             $table->string('atname');
             $table->integer('book_id');
+            $table->foreign('book_id')->refrences('id')->on('books')->onDelete('cascade');
             $table->timestamps();
         });
     }

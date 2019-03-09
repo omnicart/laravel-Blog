@@ -4,11 +4,15 @@
 	<title>test view</title>
 </head>
 <body>
-	{{-- @foreach($book->authors as $data)
-	{{$data}}
-	
+	@foreach($book as $data)
+		@foreach($data->authors as $datas)
+		<p>{{$datas->atname}}</p>
+		@endforeach
 	@endforeach
- --}}
- {{$book->authors->atname}}
+
+{{--  {{$book}} --}}
+ {{-- {{$book->authors}}<br> --}}
+
+
 </body>
 </html>

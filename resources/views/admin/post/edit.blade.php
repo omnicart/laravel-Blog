@@ -26,6 +26,10 @@
          <!-- /.box --><div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Post</h3>
+             {{--  {{$edit->tag}} --}}
+            {{--  @foreach($edit->tag as $data)
+             {{$data->name}}
+             @endforeach --}}
             </div>
           @include('include.message')
             <!-- /.box-header -->
@@ -115,7 +119,7 @@
             <!-- /.box-header -->
             <div class="box-body pad">
              
-                <textarea class="textarea" name="body" placeholder="Place some text here"
+                <textarea class="textarea" name="body" placeholder="Place some text here" id="editor1"
                           style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{$edit->body}}</textarea>
              
             </div>
@@ -138,12 +142,20 @@
 
   @section('footer-content')
 <script type="text/javascript" src="{{ asset('admin/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
-
+<script src="//cdn.ckeditor.com/4.11.3/full/ckeditor.js"></script>
 <script type="text/javascript">
   
    $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
+  })
+
+   $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('editor1')
+    //bootstrap WYSIHTML5 - text editor
+    $('.textarea').wysihtml5()
   })
 </script>
   @endsection

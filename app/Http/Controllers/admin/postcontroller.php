@@ -90,7 +90,7 @@ class postcontroller extends Controller
 
             $categories  = category::get();
         $edit = post::with('tag','category')->where('id',$id)->first();
-       // return $data;
+       // return $edit;
         // $data = post::find($id)->with('tag','category')->get();
         // dd($data);
         // dd($categories);

@@ -8,6 +8,7 @@ class book extends Model
 {
     public function authors()
     {
-    	return $this->hasOne(author::class);
+    	return $this->hasMany(author::class);
     }
+
 }
