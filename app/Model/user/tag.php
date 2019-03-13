@@ -2,8 +2,9 @@
 
 namespace App\Model\user;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Model\user;
+use App\Model\user\post;
+use Illuminate\Database\Eloquent\Model;
 class tag extends Model
 {
       protected $fillable = ['name','slug'];
@@ -12,6 +13,10 @@ class tag extends Model
 
         public function post()
     {
-    	return $this->belongsToMany(post::class);
+    	return $this->belongsToMany(post::class)->paginate(1);
+    }
+    public function getRouteKeyName()
+    {
+    	return 'slug';
     }
 }

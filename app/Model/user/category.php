@@ -14,6 +14,10 @@ class category extends Model
 
          public function post()
     {
-    	return $this->belongsToMany(post::class,'category_posts')->pivot('category');
+    	return $this->belongsToMany(post::class,'category_posts')->paginate(1);
+    }
+    public function getRouteKeyName()
+    {
+    	return 'slug';
     }
 }

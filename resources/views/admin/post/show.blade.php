@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
 @endsection
 
-
+  
 @section('main-content')
 
 <div class="content-wrapper">

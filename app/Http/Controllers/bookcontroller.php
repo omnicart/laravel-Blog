@@ -12,8 +12,9 @@ class bookcontroller extends Controller
 
 
    //  	// dd(author::get());
-   //  // dd(book::find(1)->authors);
-    $book = book::with('authors')->get();
+    	return book::find(2)->authors;
+    // $book = book::find(2)->authors;
+    // $book = book::with('authors')->where('id',2)->first();
     	 // $book = book::with('authors')->where('id',2)->first();
     	// return $book;
     	return view('testview',compact('book'));

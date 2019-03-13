@@ -33,7 +33,7 @@
           @include('include.message')
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{ route('post.store') }}" method="post">
+            <form role="form" action="{{ route('post.store') }}" method="post" enctype="multpart/form-data">
               @csrf
               <div class="box-body">
                 <!-- title start here -->

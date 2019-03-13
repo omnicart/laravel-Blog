@@ -15,4 +15,5 @@ class postcontroller extends Controller
     // return	post::where('slug',$test)->first();
     	return view('user.post',compact('post'));
     }
+  
 }

@@ -13,8 +13,17 @@
 Route::group(['namespace'=>'user'],function(){
 	// user section controller
 Route::get('/', 'homecontroller@index');
-Route::get('/post/{post?}', 'postcontroller@post')->name('post');
+
+// POST CONTROLLER POST DATA
+Route::get('/post/{post}', 'postcontroller@post')->name('post');
+
+Route::get('/post/tag/{tag}', 'homecontroller@tag')->name('tag');
+
+Route::get('/post/category/{category}', 'homecontroller@category')->name('category');
 });
+
+
+
 
 
 
