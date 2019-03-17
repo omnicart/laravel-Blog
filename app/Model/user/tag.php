@@ -13,7 +13,7 @@ class tag extends Model
 
         public function post()
     {
-    	return $this->belongsToMany(post::class)->paginate(1);
+    	return $this->belongsToMany(post::class);
     }
     public function getRouteKeyName()
     {

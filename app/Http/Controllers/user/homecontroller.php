@@ -19,14 +19,16 @@ class homecontroller extends Controller
     	// return $posts;
     	  return view('user.blog',compact('posts'));
     }
-    public function tag(tag $tag)
+    public function tag($tag)
     {
         // return $tag;
-            $posts = $tag->post();
-        // return tag::with('post')->where('slug',$tag)->first();
+        // return $tag;
+            // $posts = $tag->post()->paginate(1);
+        $tag = tag::where('slug',$tag)->first();
+       $posts = $tag->post()->paginate(1);
          return view('user.blog',compact('posts'));
     }
-
+// there is an two way that we can use to retrieve the data 1>by where 2 >post using with slug category
     public function category(category $category)
     {
         $posts = $category->post();

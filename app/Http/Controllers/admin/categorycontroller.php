@@ -55,9 +55,11 @@ class categorycontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(category $category)
     {
-        //
+        return $category->post();
+        // return category::where('id',$id)->first();
+
     }
 
     /**

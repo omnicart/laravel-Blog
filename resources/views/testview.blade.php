@@ -10,11 +10,15 @@
 		@endforeach
 	@endforeach --}}
 
- @foreach($book as $data)
- {{$data->atname}}
- @endforeach
+
  {{-- {{$book->authors}}<br> --}}
-
-
+{{-- @foreach($book as $data)
+	{{$data->atname}}
+@endforeach --}}
+{{-- {{$book->bkname}}
+@foreach($book->authors as $data)
+	{{$data->atname}}
+@endforeach
+ --}}
 </body>
 </html>

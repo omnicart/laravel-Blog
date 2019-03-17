@@ -11,4 +11,14 @@ class book extends Model
     	return $this->hasMany(author::class);
     }
 
+    public function scopeTest($query)
+    {
+    	return $query->where('bkname','jai shivray');
+    }
+
+     public function scopeTest2($query)
+    {
+    	return $query->where('id',2);
+    }
+
 }
