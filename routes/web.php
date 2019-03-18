@@ -41,6 +41,7 @@ Route::group(['prefix'=>'admin'],function(){
 
 Route::get('/book','bookcontroller@index');
  
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes(['verify' => true]);
+
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
