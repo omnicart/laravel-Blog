@@ -15,7 +15,7 @@
  <!-- footer starts here -->
 @include('admin.layouts.footer')
   <!-- Control Sidebar -->
-
+@include('flashy::message')
 
 </body>
 

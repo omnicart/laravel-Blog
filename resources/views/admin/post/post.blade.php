@@ -7,7 +7,6 @@
 @section('main-content')
 
 
-
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -31,6 +30,7 @@
               <h3 class="box-title">Post</h3>
             </div>
           @include('include.message')
+
             <!-- /.box-header -->
             <!-- form start -->
             <form role="form" action="{{ route('post.store') }}" method="post" enctype="multpart/form-data">

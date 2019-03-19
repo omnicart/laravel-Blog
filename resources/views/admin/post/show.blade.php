@@ -6,7 +6,6 @@
 
   
 @section('main-content')
-
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -23,7 +22,6 @@
 
     <!-- Main content -->
     <section class="content">
-
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">

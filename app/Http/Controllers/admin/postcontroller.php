@@ -7,6 +7,7 @@ use App\Model\user\post;
 use DB;
 use App\Model\user\tag;
 use App\Model\user\category;
+use Spatie\Flash\Message;
 class postcontroller extends Controller
 {
     /**
@@ -58,6 +59,7 @@ class postcontroller extends Controller
         $post->body = $request->body;
         $post->status = $request->status;
         $post->save();
+        flashy()->success('Post has been succesfully Stored');
         // dd($post->tag());
         $post->tag()->sync($request->tags);
         $post->category()->sync($request->category);
@@ -124,6 +126,7 @@ class postcontroller extends Controller
         $post->tag()->sync($request->tags);
         $post->category()->sync($request->category);
         $post->save();
+        flashy()->info('Post Uploaded succesfully');
         return redirect()->route('post.index');
     }
 
@@ -137,6 +140,7 @@ class postcontroller extends Controller
     {
         $post = post::find($id);
         $post->delete();
+        flashy()->primary('Post Delete Successfully');
         return redirect()->route('post.index');
     }
 }
