@@ -12,7 +12,7 @@
 */
 Route::group(['namespace'=>'user'],function(){
 	// user section controller
-Route::get('/', 'homecontroller@index');
+Route::get('/', 'homecontroller@index')->middleware('verified');;
 
 // POST CONTROLLER POST DATA
 Route::get('/post/{post}', 'postcontroller@post')->name('post');
@@ -35,7 +35,12 @@ Route::group(['prefix'=>'admin'],function(){
 				Route::resource('user','usercontroller');
 				Route::resource('tag','tagcontroller');
 				Route::resource('category','categorycontroller');
-	});
+				// // admin auth Route
+				Route::get('admin-login','Auth\LoginController@showLoginForm')->name('admin.login');
+				Route::post('admin-login', 'Auth\LoginController@login');
+				Route::post('admin-logout', 'Auth\LoginController@logout')->name('admin.logout');
+				
+	});	
  
 });
 
@@ -44,4 +49,6 @@ Route::get('/book','bookcontroller@index');
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/home', 'HomeController@index')->name('home');
+
+

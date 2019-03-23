@@ -33,6 +33,10 @@ class postcontroller extends Controller
         return view('admin.post.post',compact('tag','categories'));
     }
 
+       public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     /**
      * Store a newly created resource in storage.
      *

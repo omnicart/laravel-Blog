@@ -16,8 +16,8 @@ class category extends Model
     {
     	return $this->belongsToMany(post::class,'category_posts')->paginate(1);
     }
-    public function getRouteKeyName()
-    {
-    	return 'slug';
-    }
+    // public function getRouteKeyName()
+    // {
+    // 	return 'slug';
+    // }
 }

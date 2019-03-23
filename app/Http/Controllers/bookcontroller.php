@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\book;
-use App\author;
+// use App\book;
+// use App\author;
 class bookcontroller extends Controller
 {
     public function index(){
@@ -19,6 +19,6 @@ class bookcontroller extends Controller
     	 // $book = book::with('authors')->where('id',2)->first();
     	// return $book;
     	// return view('testview',compact('book'));
-        return book::test()->orWhere->test2()->get();
+       return view('testview');
     }
 }

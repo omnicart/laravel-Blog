@@ -27,6 +27,11 @@ class usercontroller extends Controller
         return view('admin.user.create');
     }
 
+
+     public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     /**
      * Store a newly created resource in storage.
      *

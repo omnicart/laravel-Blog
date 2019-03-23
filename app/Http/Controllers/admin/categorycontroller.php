@@ -98,4 +98,9 @@ class categorycontroller extends Controller
       $category->delete();
       return redirect('admin/category');
     }
+
+     public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
 }
