@@ -35,6 +35,8 @@ Route::group(['prefix'=>'admin'],function(){
 				Route::resource('user','usercontroller');
 				Route::resource('tag','tagcontroller');
 				Route::resource('category','categorycontroller');
+				Route::resource('role','rolecontroller');
+
 				// // admin auth Route
 				Route::get('admin-login','Auth\LoginController@showLoginForm')->name('admin.login');
 				Route::post('admin-login', 'Auth\LoginController@login');

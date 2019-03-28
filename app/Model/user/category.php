@@ -12,9 +12,9 @@ class category extends Model
 
       protected $guarded = [];
 
-         public function post()
+   public function post()
     {
-    	return $this->belongsToMany(post::class,'category_posts')->paginate(1);
+    	return $this->belongsToMany(post::class)->paginate(1);
     }
     // public function getRouteKeyName()
     // {

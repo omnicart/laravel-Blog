@@ -15,7 +15,7 @@ class homecontroller extends Controller
     	// $post = post::find($post);
     	// below get gives you the all collection but find and first gives only the instanes
      // return	post::get()->toArray();
-    	$posts = post::where('status',1)->paginate(2);
+    	$posts = post::where('status',1)->paginate(1);
     	// return $posts;
     	  return view('user.blog',compact('posts'));
     }

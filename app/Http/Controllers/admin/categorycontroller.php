@@ -37,15 +37,16 @@ class categorycontroller extends Controller
      */
     public function store(Request $request)
     {
-        // return $request->all();
+        //return $request->all();
         $this->validate($request,[
             'name'=>'required',
             'slug' =>'required'
         ]);
-        $category = new category;
-        $category->name = $request->name;
-        $category->slug = $request->slug;
-        $category->save();
+        category::create($request->all());
+        // $category = new category;
+        // $category->name = $request->name;
+        // $category->slug = $request->slug;
+        // $category->save();
         return redirect('admin/category');
     }
 
@@ -83,7 +84,15 @@ class categorycontroller extends Controller
      */
     public function update(Request $request, category $category)
     {
-       $category->update(['name'=>$request->name,'slug'=>$request->slug]);
+           $this->validate($request,[
+            'name'=>'required',
+            'slug' =>'required'
+        ]);
+           // $category->name = $request->name;
+           // $category->slug = $request->slug;
+           // $category->Save();
+           $category->update($request->all());
+       // $category->update(['name'=>$request->name,'slug'=>$request->slug]);
        return redirect()->route('category.index');
     }
 
@@ -95,6 +104,8 @@ class categorycontroller extends Controller
      */
     public function destroy(category $category)
     {
+        // $category = category::find($category);
+        // return $category;
       $category->delete();
       return redirect('admin/category');
     }
@@ -103,4 +114,5 @@ class categorycontroller extends Controller
     {
         $this->middleware('auth:admin');
     }
+    
 }

@@ -4,8 +4,9 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
 @endsection
 
-  
 @section('main-content')
+
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -22,11 +23,12 @@
 
     <!-- Main content -->
     <section class="content">
+
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Post</h3>
-          <a href="{{ route('user.create') }}" class="col-lg-offset-5 btn btn-success">Add New</a>
+          <h3 class="box-title">Tags</h3>
+         <a href="{{ route('role.create') }}" class="col-lg-offset-5 btn btn-success">Add New</a>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                     title="Collapse">
@@ -46,24 +48,24 @@
                 <thead>
                 <tr>
                   <th>Sr. No</th>
-                  <th>Name</th>
+                  <th>role Name</th>
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>
                 </thead>
                 <tbody>
-                  @foreach($users as $user)
+                  @foreach($roles as $role)
                 <tr>
                   <td>{{$loop->index+1}}</td>
-                  <td>{{$user->name}}</td>
-                  <td><a href="{{ route('user.edit',$user->id) }}"><span class="fa fa-edit"></span></a></td>
+                  <td>{{$role->name}}</td>
+                  <td><a href="{{ route('role.edit',$role->id) }}"><span class="fa fa-edit"></span></a></td>
                   <td>
-                   <form class="form-group pull-right" action="{{ route('user.destroy',$user->id) }}" method="POST" id="Delete-form-{{$user->id}}">
+                   <form class="form-group pull-right" action="{{ route('role.destroy',$role->id) }}" method="post" id="Delete-form-{{$role->id}}">
                       {{csrf_field()}}  
                    
                     @method('DELETE')
                   </form>
-                   <a href=""  onclick="if(confirm('Are You want to Delete?')){event.preventDefault();document.getElementById('Delete-form-{{$user->id}}').submit();}else{event.preventDefault();}"><span class="fa fa-trash-o"></span></a>
+                   <a href=""  onclick="if(confirm('Are You want to Delete?')){event.preventDefault();document.getElementById('Delete-form-{{$role->id}}').submit();}else{event.preventDefault();}"><span class="fa fa-trash-o"></span></a>
                   </td>
                 </tr>
                 @endforeach
@@ -71,7 +73,7 @@
                 <tfoot>
                  <tr>
                   <th>Sr. No</th>
-                  <th>Name</th>
+                  <th>role Name</th>
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>
@@ -80,6 +82,7 @@
             </div>
             <!-- /.box-body -->
           </div>
+          <!-- /.box -->
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
@@ -93,7 +96,6 @@
     <!-- /.content -->
   </div>
   @endsection
-
 
   @section('footer-section')
   <script type="text/javascript" src="{{ asset('admin/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>

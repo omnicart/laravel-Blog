@@ -1,11 +1,14 @@
 <?php
+
 namespace App\Http\Controllers\admin;
+
 use App\Http\Controllers\Controller;
-use App\Model\admin\admin;
 use App\Model\admin\role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
-class usercontroller extends Controller
+class rolecontroller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +17,10 @@ class usercontroller extends Controller
      */
     public function index()
     {
-       $users=admin::get();
-       // return $users;
-        return view('admin.user.show')->with(['users'=>$users]);
+        // $roles = role::get();
+        $roles = DB::TABLE('roles')->get();
+        // return $roles;
+        return view('admin.role.show',compact('roles'));
     }
 
     /**
@@ -26,15 +30,9 @@ class usercontroller extends Controller
      */
     public function create()
     {
-        $roles = role::get();
-        return view('admin.user.create',compact('roles'));
+        return view('admin.role.role');
     }
 
-
-     public function __construct()
-    {
-        $this->middleware('auth:admin');
-    }
     /**
      * Store a newly created resource in storage.
      *
@@ -45,20 +43,11 @@ class usercontroller extends Controller
     {
         // return $request->all();
         $this->validate($request,[
-            'name'=> 'required',
-            'email'=>'required|email|unique:admins',
-            'phone' =>'required|numeric',
-            'password'=>'required|confirmed|min:6',
-            'password_confirmation'=>'required|min:6',
+            'name' =>'required|unique:roles',
         ]);
-        
-        $admin = new admin;
-        $admin->name = $request->name;
-        $admin->email = $request->email;
-        $admin->password = bcrypt($request->password);
-        $admin->phone = $request->phone;
-        $admin->save();
-        return redirect()->route('user.index');
+      DB::TABLE('roles')->insert(['name'=>$request->name,'created_at'=>Carbon::now(),'updated_at'=>Carbon::now()]);
+      flashy()->success('Role Uploaded succesfully');
+        return redirect()->route('role.index');
     }
 
     /**
@@ -69,7 +58,7 @@ class usercontroller extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -80,7 +69,10 @@ class usercontroller extends Controller
      */
     public function edit($id)
     {
-        //
+        // return $id;
+    $role = DB::table('roles')->where('id', $id)->first();
+// print_r($roles);
+        return view('admin.role.edit')->with('role',$role);
     }
 
     /**
@@ -92,7 +84,12 @@ class usercontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'name' =>'required'
+        ]);
+      $roles = DB::TABLE('roles')->where('id',$id)->update(['name'=>$request->name]);
+       flashy()->info('Role Uploaded succesfully');
+      return redirect()->route('role.index');
     }
 
     /**
@@ -101,8 +98,11 @@ class usercontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($role)
     {
-        //
+        // return $role;
+        $data = DB::TABLE('roles')->where('id',$role)->delete();
+      
+        return redirect()->route('role.index');
     }
 }
