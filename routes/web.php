@@ -54,3 +54,13 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+
+// Just test controller
+Route::get('test','test\testcontroller@index')->name('validate');
+Route::post('test','test\testcontroller@store');
+
+
+Route::get('upload','uploadcontroller@index');
+Route::post('update','uploadcontroller@store');
+
+

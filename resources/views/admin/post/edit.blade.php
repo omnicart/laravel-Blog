@@ -34,7 +34,7 @@
           @include('include.message')
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{ route('post.update',$edit->id) }}" method="post">
+            <form role="form" action="{{ route('post.update',$edit->id) }}" method="post"  enctype="multipart/form-data">
               @csrf
               @method('PUT')
               <div class="box-body">
@@ -52,7 +52,7 @@
                 <!-- //slug -->
                  <div class="form-group">
                   <label for="slug">Post Slug</label>
-                  <input type="text" class="form-control" id="slug" placeholder="Slug" name="slug" value="{{$edit->slug}}"">
+                  <input type="text" class="form-control" id="slug" placeholder="Slug" name="slug" value="{{$edit->slug}}">
                 </div>
               </div>
                 <!-- //file (img) -->
@@ -61,7 +61,7 @@
                   <div class="form-group">
                     <div class="pull-right">
                       <label for="image">File input</label>
-                       <input type="file" name = "image" id="image">
+                       <input type="file" name = "image" id="image" >{{$edit->image}}
                     </div>
                     <div class="checkbox pull-left" >
                       <label>

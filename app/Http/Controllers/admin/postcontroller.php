@@ -50,16 +50,24 @@ class postcontroller extends Controller
             'title' => 'required',
             'subtitle' => 'required',
             'slug' =>'required',
+            'image' =>'required|image|mimes:jpeg,png,jpg,gif',
             'body'=>'required',
             'tags'=>'required',
             'category' =>'required',
             
         ]);
-        $post = new post;
-        // dd($post);
+
+        if($request->hasFile('image'))
+        {
+           $filename = $request->image->getClientOriginalName();
+           $request->image->StoreAs('public',$filename);
+            // return 'yes';
+            $post = new post;
+        // // dd($post);
         $post->title = $request->title;
         $post->subtitle = $request->subtitle;
         $post->slug = $request->slug;
+        $post->image = $filename;
         $post->body = $request->body;
         $post->status = $request->status;
         $post->save();
@@ -67,8 +75,10 @@ class postcontroller extends Controller
         // dd($post->tag());
         $post->tag()->sync($request->tags);
         $post->category()->sync($request->category);
-        // // DB::TABLE('posts')->insert($request->except('_token','_wysihtml5_mode'));
-        return redirect()->route('post.index');
+         return redirect()->route('post.index');
+        }
+        // // // DB::TABLE('posts')->insert($request->except('_token','_wysihtml5_mode'));
+        
     }
 
     /**
@@ -112,26 +122,35 @@ class postcontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-       // return $request->all();
+      // return $request->all();
          $this->validate($request,[
             'title' => 'required',
             'subtitle' => 'required',
             'slug' =>'required',
+            'image' => 'required',
             'body'=>'required',
             'tags'=>'required',
             'category' =>'required',
         ]);
 
-       $post = post::find($id);
+         if($request->hasFile('image'))
+        {
+            $filename =  $request->image->getClientOriginalName();
+           $request->image->StoreAs('public',$filename);
+
+        }
+         $post = post::find($id);
         $post->title = $request->title;
         $post->subtitle = $request->subtitle;
         $post->slug = $request->slug;
+        $post->image = $filename;
         $post->body = $request->body;
         $post->tag()->sync($request->tags);
         $post->category()->sync($request->category);
         $post->save();
         flashy()->info('Post Uploaded succesfully');
         return redirect()->route('post.index');
+      
     }
 
     /**

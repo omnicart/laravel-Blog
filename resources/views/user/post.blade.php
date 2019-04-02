@@ -7,7 +7,7 @@
 <!-- Blog subtitle starts here -->
 @section('sub-heading',$post->subtitle)
 <!-- Blog Image Starts Here -->
-@section('bg-img',asset('user/img/post-bg.jpg'))
+@section('bg-img',Storage::disk('local')->url($post->image))
 
 <!-- Blog Main Content Starts Here -->
  @section('main-content')
