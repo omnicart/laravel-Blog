@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use App\book;
+
 // use App\author;
 class bookcontroller extends Controller
 {
     public function index(){
-     // $book = book::all();
+     $book = book::all();
        // $book =  book::where('id',2)->first();
        // return $book->authors;
    //  	// dd(author::get());

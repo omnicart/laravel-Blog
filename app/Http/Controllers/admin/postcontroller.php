@@ -54,7 +54,7 @@ class postcontroller extends Controller
             'body'=>'required',
             'tags'=>'required',
             'category' =>'required',
-            
+
         ]);
 
         if($request->hasFile('image'))
@@ -78,7 +78,7 @@ class postcontroller extends Controller
          return redirect()->route('post.index');
         }
         // // // DB::TABLE('posts')->insert($request->except('_token','_wysihtml5_mode'));
-        
+
     }
 
     /**
@@ -150,7 +150,7 @@ class postcontroller extends Controller
         $post->save();
         flashy()->info('Post Uploaded succesfully');
         return redirect()->route('post.index');
-      
+
     }
 
     /**

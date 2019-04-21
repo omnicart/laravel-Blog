@@ -64,3 +64,6 @@ Route::get('upload','uploadcontroller@index');
 Route::post('update','uploadcontroller@store');
 
 
+	Route::resource('ajinkya/crud','ajinkyacontroller');
+
+
